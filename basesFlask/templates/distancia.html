@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="container pt-4">
+    <h3>Distancia</h3>
+
+    <form action="/distancia" method="POST">
+        <div class="row mt-4">
+            <!-- Punto 1 -->
+            <div class="col-md-6">
+                <h4>Punto 1</h4>
+                <div class="mb-3">
+                    <label for="x1" class="form-label">x1:</label>
+                    <input type="number" step="any" name="x1" id="x1" class="form-control" placeholder="-4" value="{{ x1 }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="y1" class="form-label">y1:</label>
+                    <input type="number" step="any" name="y1" id="y1" class="form-control" placeholder="-3" value="{{ y1 }}" required>
+                </div>
+            </div>
+
+            <!-- Punto 2 -->
+            <div class="col-md-6">
+                <h4>Punto 2</h4>
+                <div class="mb-3">
+                    <label for="x2" class="form-label">x2:</label>
+                    <input type="number" step="any" name="x2" id="x2" class="form-control" placeholder="2" value="{{ x2 }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="y2" class="form-label">y2:</label>
+                    <input type="number" step="any" name="y2" id="y2" class="form-control" placeholder="5" value="{{ y2 }}" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">
+            Calcular Distancia
+        </button>
+    </form>
+
+    <!-- Muestra del resultado -->
+    {% if distancia is not none %}
+        <div class="mt-4 alert alert-info">
+            {% if distancia is string %}
+                <h3>{{ distancia }}</h3>
+            {% else %}
+                <h2>La distancia es: {{ "%.2f"|format(distancia) }}</h2>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
